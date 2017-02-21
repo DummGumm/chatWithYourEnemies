@@ -51,7 +51,7 @@ namespace Client
         private void cmdVerbinden_Click(object sender, EventArgs e)
         {
             AsyClient.Connect(IPAddress.Parse("127.0.0.1"), 20);
-            cmdTrennen.Enabled = true;
+            //cmdTrennen.Enabled = true;
             cmdSenden.Enabled = true;
             cmdVerbinden.Enabled = false;
             //Noah ist ein doofmann
