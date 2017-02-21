@@ -15,6 +15,7 @@ namespace Client
     public partial class Client : Form
     {
         AsyncTcpClient AsyClient;
+        string strName;
 
         public Client()
         {
@@ -27,12 +28,12 @@ namespace Client
 
         private void AsyClient_PacketReceived(object sender, PacketReceivedEventArgs e)
         {
-            TextVServer(Encoding.ASCII.GetString(e.Packet));
+            TextVServer(Encoding.UTF8.GetString(e.Packet));
         }
 
         private void cmdSenden_Click(object sender, EventArgs e)
         {
-            AsyClient.SendPacket(Encoding.ASCII.GetBytes(txtBoxZuServer.Text));
+            AsyClient.SendPacket(Encoding.UTF8.GetBytes(strName +": " + txtBoxZuServer.Text));
         }
 
         private void TextVServer(string Text)
@@ -50,6 +51,8 @@ namespace Client
 
         private void cmdVerbinden_Click(object sender, EventArgs e)
         {
+            strName = txtBoxZuServer.Text;
+            txtBoxZuServer.Clear();
             AsyClient.Connect(IPAddress.Parse("127.0.0.1"), 20);
             cmdTrennen.Enabled = true;
             cmdSenden.Enabled = true;
@@ -58,7 +61,11 @@ namespace Client
 
         private void cmdTrennen_Click(object sender, EventArgs e)
         {
+            AsyClient.Disconnect();
+
+            cmdTrennen.Enabled = false;
             cmdSenden.Enabled = false;
+            cmdVerbinden.Enabled = true;
         }
     }
 
