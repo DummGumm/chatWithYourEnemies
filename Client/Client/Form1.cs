@@ -60,6 +60,11 @@ namespace Client
         {
             cmdSenden.Enabled = false;
         }
+
+        private void emojiButtonPressed(object sender, EventArgs e)
+        {
+            txtBoxZuServer.Text += ((Button)sender).Text;
+        }
     }
 
     delegate void SetTextCallback(string Text);
