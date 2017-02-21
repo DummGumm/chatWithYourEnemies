@@ -54,6 +54,7 @@ namespace Client
             cmdTrennen.Enabled = true;
             cmdSenden.Enabled = true;
             cmdVerbinden.Enabled = false;
+            //Noah ist ein doofmann
         }
 
         private void cmdTrennen_Click(object sender, EventArgs e)
