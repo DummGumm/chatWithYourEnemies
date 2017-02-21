@@ -54,7 +54,10 @@ namespace Client
             //cmdTrennen.Enabled = true;
             cmdSenden.Enabled = true;
             cmdVerbinden.Enabled = false;
+<<<<<<< HEAD
             //Marcel ist ein doofmann
+=======
+>>>>>>> origin/master
         }
 
         private void cmdTrennen_Click(object sender, EventArgs e)
