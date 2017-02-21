@@ -58,7 +58,7 @@ namespace Client
 
         private void cmdTrennen_Click(object sender, EventArgs e)
         {
-
+            cmdSenden.Enabled = false;
         }
     }
 
