@@ -56,6 +56,7 @@
             this.txtBoxZuServer.Name = "txtBoxZuServer";
             this.txtBoxZuServer.Size = new System.Drawing.Size(264, 20);
             this.txtBoxZuServer.TabIndex = 1;
+            this.txtBoxZuServer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBoxZuServer_KeyDown);
             // 
             // lbChat
             // 
@@ -64,6 +65,7 @@
             this.lbChat.Name = "lbChat";
             this.lbChat.Size = new System.Drawing.Size(264, 186);
             this.lbChat.TabIndex = 2;
+            this.lbChat.TabStop = false;
             // 
             // cmdVerbinden
             // 

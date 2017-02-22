@@ -23,8 +23,8 @@ namespace Server
 
         private void cmdStart_Click(object sender, EventArgs e)
         {
-            //AsyServer = new AsyncTcpServer(IPAddress.Parse("127.0.0.1"), 20);
-            AsyServer = new AsyncTcpServer(IPAddress.Any, 20);
+            //AsyServer = new AsyncTcpServer(IPAddress.Parse("10.200.14.187"), 20);
+            AsyServer = new AsyncTcpServer(IPAddress.Any, 80);
             AsyServer.Start();
             
             AsyServer.ClientConnected += Server_ClientConnected;
@@ -48,20 +48,17 @@ namespace Server
         private void Server_ClientConnected(object sender, ClientConnectedEventArgs e)
         {
             lbEintrag(e.Client, "Client " + e.Client.Client.RemoteEndPoint + " verbunden");
-            //MessageBox.Show("client Connected" + e.Client.ToString());
-            //lblTextVserver.Text = "Verbunden";
         }
 
         private void Server_ClientDisconnected(object sender, ClientDisconnectedEventArgs e)
         {
             lbEintrag(e.Client, "Client " + e.Client.Client.RemoteEndPoint + " getrennt");
-            //MessageBox.Show("Disconnected");
         }
 
         private void Server_PacketReceived(object sender, PacketReceivedEventArgs e)
         {
-            //MessageBox.Show(System.Text.Encoding.ASCII.GetString(e.Packet));
-            AsyServer.SendPacket(e.Sender, e.Packet);
+            AsyServer.SendPacket(e.Packet);
+            //AsyServer.SendPacket(e.Sender, e.Packet);
         }
 
         private void lbEintrag(TcpClient client, string Text)
