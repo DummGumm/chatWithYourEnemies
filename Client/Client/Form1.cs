@@ -103,7 +103,7 @@ namespace Client
             txtBoxZuServer.Clear();
             lbChat.Items.Clear();
 
-            AsyClient.Connect(IPAddress.Parse("10.200.14.187"), 80);
+            AsyClient.Connect(IPAddress.Parse("10.200.14.187"), 1234);
             cmdTrennen.Enabled = true;
             cmdSenden.Enabled = true;
             cmdVerbinden.Enabled = false;

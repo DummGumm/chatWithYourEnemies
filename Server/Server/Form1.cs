@@ -23,8 +23,8 @@ namespace Server
 
         private void cmdStart_Click(object sender, EventArgs e)
         {
-            //AsyServer = new AsyncTcpServer(IPAddress.Parse("10.200.14.187"), 20);
-            AsyServer = new AsyncTcpServer(IPAddress.Any, 80);
+            //AsyServer = new AsyncTcpServer(IPAddress.Parse("10.200.14.187"), 1234);
+            AsyServer = new AsyncTcpServer(IPAddress.Any, 1234);
             AsyServer.Start();
             
             AsyServer.ClientConnected += Server_ClientConnected;
