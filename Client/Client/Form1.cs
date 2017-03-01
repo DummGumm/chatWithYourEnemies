@@ -14,22 +14,34 @@ namespace Client
 {
     public partial class Client : Form
     {
+        Form FrmVerbinden;
         AsyncTcpClient AsyClient;
         string strName;
 
-        public Client()
+        public Client(string[] strIP_Name, Form FRMVerbinden)
         {
             InitializeComponent();
-            lbChat.Items.Add("Bitte Chat Namen eingeben.");
+
+            FrmVerbinden = FRMVerbinden;
 
             AsyClient = new AsyncTcpClient();
-
             AsyClient.PacketReceived += AsyClient_PacketReceived;
+            AsyClient.Disconnected += AsyClient_Disconnected;
+
+            Verbinden(strIP_Name);
+        }
+
+        private void AsyClient_Disconnected(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void AsyClient_PacketReceived(object sender, PacketReceivedEventArgs e)
         {
-            TextVServer(Encoding.UTF8.GetString(e.Packet));
+            if (Encoding.UTF8.GetString(e.Packet) != strName + " hat den chat verlassen!")
+            {
+                TextVServer(Encoding.UTF8.GetString(e.Packet));
+            }
         }
 
         private void cmdSenden_Click(object sender, EventArgs e)
@@ -50,11 +62,6 @@ namespace Client
             }
         }
 
-        private void cmdVerbinden_Click(object sender, EventArgs e)
-        {
-            Verbinden();
-        }
-
         private void cmdTrennen_Click(object sender, EventArgs e)
         {
             AsyClient.SendPacket(Encoding.UTF8.GetBytes(strName + " hat den chat verlassen!"));
@@ -62,7 +69,8 @@ namespace Client
 
             cmdTrennen.Enabled = false;
             cmdSenden.Enabled = false;
-            cmdVerbinden.Enabled = true;
+
+            FrmVerbinden.Show();
         }
 
         private void txtBoxZuServer_Keypress(object sender, KeyEventArgs e)
@@ -79,14 +87,7 @@ namespace Client
             {
                 if (txtBoxZuServer.Text != "")
                 {
-                    if (cmdVerbinden.Enabled == true)
-                    {
-                        Verbinden();
-                    }
-                    else if (cmdSenden.Enabled == true)
-                    {
-                        NachrichtSenden();
-                    }
+                    NachrichtSenden();
                 }
             }
         }
@@ -97,16 +98,17 @@ namespace Client
             txtBoxZuServer.Clear();
         }
 
-        private void Verbinden()
+        private void Verbinden(string[] strIP_Name)
         {
-            strName = txtBoxZuServer.Text;
+            strName = strIP_Name[1];
             txtBoxZuServer.Clear();
             lbChat.Items.Clear();
 
-            AsyClient.Connect(IPAddress.Parse("10.200.14.187"), 1234);
+            string[] substring = strIP_Name[0].Split(':');
+
+            AsyClient.Connect(IPAddress.Parse(substring[0]), Convert.ToInt32(substring[1]));
             cmdTrennen.Enabled = true;
             cmdSenden.Enabled = true;
-            cmdVerbinden.Enabled = false;
 
             AsyClient.SendPacket(Encoding.UTF8.GetBytes(strName + " ist da!"));
         }

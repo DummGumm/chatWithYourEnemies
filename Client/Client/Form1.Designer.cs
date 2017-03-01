@@ -31,7 +31,6 @@
             this.cmdSenden = new System.Windows.Forms.Button();
             this.txtBoxZuServer = new System.Windows.Forms.TextBox();
             this.lbChat = new System.Windows.Forms.ListBox();
-            this.cmdVerbinden = new System.Windows.Forms.Button();
             this.cmdTrennen = new System.Windows.Forms.Button();
             this.btnInsertBoar = new System.Windows.Forms.Button();
             this.btnInsertPeach = new System.Windows.Forms.Button();
@@ -67,20 +66,10 @@
             this.lbChat.TabIndex = 2;
             this.lbChat.TabStop = false;
             // 
-            // cmdVerbinden
-            // 
-            this.cmdVerbinden.Location = new System.Drawing.Point(8, 234);
-            this.cmdVerbinden.Name = "cmdVerbinden";
-            this.cmdVerbinden.Size = new System.Drawing.Size(75, 23);
-            this.cmdVerbinden.TabIndex = 3;
-            this.cmdVerbinden.Text = "Verbinden";
-            this.cmdVerbinden.UseVisualStyleBackColor = true;
-            this.cmdVerbinden.Click += new System.EventHandler(this.cmdVerbinden_Click);
-            // 
             // cmdTrennen
             // 
             this.cmdTrennen.Enabled = false;
-            this.cmdTrennen.Location = new System.Drawing.Point(104, 234);
+            this.cmdTrennen.Location = new System.Drawing.Point(12, 234);
             this.cmdTrennen.Name = "cmdTrennen";
             this.cmdTrennen.Size = new System.Drawing.Size(75, 23);
             this.cmdTrennen.TabIndex = 4;
@@ -142,7 +131,6 @@
             this.Controls.Add(this.btnInsertPeach);
             this.Controls.Add(this.btnInsertBoar);
             this.Controls.Add(this.cmdTrennen);
-            this.Controls.Add(this.cmdVerbinden);
             this.Controls.Add(this.lbChat);
             this.Controls.Add(this.txtBoxZuServer);
             this.Controls.Add(this.cmdSenden);
@@ -158,7 +146,6 @@
         private System.Windows.Forms.Button cmdSenden;
         private System.Windows.Forms.TextBox txtBoxZuServer;
         private System.Windows.Forms.ListBox lbChat;
-        private System.Windows.Forms.Button cmdVerbinden;
         private System.Windows.Forms.Button cmdTrennen;
         private System.Windows.Forms.Button btnInsertBoar;
         private System.Windows.Forms.Button btnInsertPeach;
